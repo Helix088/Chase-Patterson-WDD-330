@@ -1,6 +1,6 @@
-import ToDos from "./todos2.js";
+import ToDos from "./todos.js";
 
-import todos from "./todo-list.js";
+import todos from "./getItems.js";
 
 let toDoList = new ToDos(todos);
 let all = true;

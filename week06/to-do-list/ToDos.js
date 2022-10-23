@@ -1,142 +1,137 @@
-import ToDo from "./ToDo.js";
+import ToDo from "./todo.js";
 
 class ToDos {
-  constructor(todos) {
-    this.todos = todos;
+  constructor(toDos) {
+    this.toDos = toDos;
   }
 
-  showToDos(all, active, completed) {
-    const todosList = document.getElementById("todolist");
-    todosList.innerHTML = "";
-    this.renderTodolist(this.todos, todosList, all, active, completed);
-    this.countLeftTasks();
+  listToDos(all, active, completed) {
+    const toDoList = document.getElementById("toDoList");
+    toDoList.innerHTML = "";
+    this.renderToDoList(this.toDos, toDoList, all, active, completed);
+    this.countTasks();
   }
 
-  renderTodolist(todoList, parent, all, active, completed) {
+  renderToDoList(toDoList, parent, all, active, completed) {
     if (all == true) {
-      todoList.forEach((todo) => {
-        parent.appendChild(this.renderTodoItem(todo));
-        this.countLeftTasks();
+      toDoList.forEach((toDo) => {
+        parent.appendChild(this.renderTodo(toDo));
+        this.countTasks();
       });
     } else if (active == true) {
-      todoList.forEach((todo) => {
-        if (todo.completed == false) {
-          parent.appendChild(this.renderTodoItem(todo));
-          this.countLeftTasks();
+      toDoList.forEach((toDo) => {
+        if (toDo.completed == false) {
+          parent.appendChild(this.renderTodo(toDo));
+          this.countTasks();
         }
       });
     } else if (completed == true) {
-      todoList.forEach((todo) => {
-        if (todo.active == false) {
-          parent.appendChild(this.renderTodoItem(todo));
-          this.countLeftTasks();
+      toDoList.forEach((toDo) => {
+        if (toDo.active == false) {
+          parent.appendChild(this.renderTodo(toDo));
+          this.countTasks();
         }
       });
     }
   }
 
-  renderTodoItem(todo) {
-    const li = document.createElement("li");
-    if (todo.completed == true) {
-      li.innerHTML = `<div>
+  renderTodo(toDo) {
+    const item = document.createElement("li");
+    if (toDo.completed == true) {
+      item.innerHTML = `<div>
             <div id="checked">
              <i class="fa fa-check-square-o"></i>
              </div>
-             <div class="checked">
-             ${todo.todoName}
+             <div class="checked toDoItem">
+             ${toDo.content}
              </div>
              <div id="delete">
-             <input type="hidden" value=${todo.id}>
-             <i class="material-icons">clear</i>             
+             <input type="hidden" value=${toDo.id}>
+             <i class="fa-solid fa-trash-can"></i>            
              </div>
              </div>`;
-      return li;
+      return item;
     } else {
-      li.innerHTML = `<div>
+      item.innerHTML = `<div>
             <div id="checked">
-             <i class="fa fa-check-square-o displayed" ></i>
+             <i class="fa fa-check-square-o" ></i>
              </div>
-             <div>
-             ${todo.todoName}
+             <div class="toDoItem">
+             ${toDo.content}
              </div>
              <div id="delete">
-             <input type="hidden" value=${todo.id}>
-             <i class="material-icons">clear</i>             
+             <input type="hidden" value=${toDo.id}>
+             <i class="fa-solid fa-trash-can"></i>            
              </div>
              </div>`;
-      return li;
+      return item;
     }
   }
 
-  countLeftTasks() {
+  addTodo(all, active, completed) {
+    let content = document.getElementById("input").value;
+    if (content == "") {
+      alert("You cannot enter a blank task.");
+    } else {
+      let id = Date.now();
+      let completed = false;
+      let newToDo = new ToDo(id, content, completed);
+      this.writeToLS(newToDo);
+      this.listToDos(all, active, completed);
+      this.countTasks();
+    }
+  }
+
+  writeToLS(newToDo, all, active, completed) {
+    localStorage.setItem("toDos", newToDo);
+    this.toDos.push(newToDo);
+    let newToDoString = JSON.stringify(this.toDos);
+    localStorage.setItem("toDos", newToDoString);
+    this.countTasks();
+  }
+
+  completeTodo(event, all, active, completed) {
+    event.target.classList.toggle("checked");
+    event.target.previousSibling.previousSibling.firstChild.nextSibling.classList.toggle(
+      "displayed"
+    );
+    let itemId =
+      event.target.nextSibling.nextSibling.firstChild.nextSibling.value;
+    for (let i = 0; i < this.toDos.length; i++) {
+      if (this.toDos[i].id == itemId) {
+        this.toDos[i].completed =
+          this.toDos[i].completed == false ? true : false;
+      }
+    }
+    let newToDosString = JSON.stringify(this.toDos);
+    localStorage.setItem("toDos", newToDosString);
+    this.listToDos(all, active, completed);
+    this.countTasks();
+  }
+
+  deleteTodo(event, all, active, completed) {
+    let deleteTodoId = event.target.previousSibling.previousSibling.value;
+    for (let i = 0; i < this.toDos.length; i++) {
+      if (this.toDos[i].id == deleteTodoId) {
+        this.toDos.splice(i, 1);
+        let newToDosString = JSON.stringify(this.toDos);
+        localStorage.setItem("toDos", newToDosString);
+        this.listToDos(all, active, completed);
+        this.countTasks();
+      }
+    }
+  }
+
+  countTasks() {
     let uncompletedTasks = 0;
-    for (let i = 0; i < this.todos.length; i++) {
-      if (this.todos[i].completed == false) {
+    for (let i = 0; i < this.toDos.length; i++) {
+      if (this.toDos[i].completed == false) {
         uncompletedTasks++;
       }
     }
     document.getElementById(
       "uncompleted"
     ).innerHTML = `${uncompletedTasks} tasks left`;
-  }
-
-  addItem(all, active, completed) {
-    let todoName = document.getElementById("todo_value").value;
-    if (todoName == "") {
-      document.getElementById("message").innerHTML =
-        "Sorry, input cannot be blank. Please, " + "specify an item";
-    } else {
-      document.getElementById("message").innerHTML = "";
-      let id = Date.now();
-      let completed = false;
-      let newTodo = new ToDo(id, todoName, completed);
-      //todoList.addToDo(newTodo);
-      //todoList.showToDos();
-      this.addToDo(newTodo);
-      this.showToDos(all, active, completed);
-      this.countLeftTasks();
-    }
-  }
-
-  addToDo(newTodo, all, active, completed) {
-    localStorage.setItem("todos", newTodo);
-
-    this.todos.push(newTodo);
-    let todosArrayString = JSON.stringify(this.todos);
-    localStorage.setItem("todos", todosArrayString);
-    this.countLeftTasks();
-  }
-
-  checkItem(event, all, active, completed) {
-    event.target.classList.toggle("checked");
-
-    event.target.previousSibling.previousSibling.firstChild.nextSibling.classList.toggle(
-      "displayed"
-    );
-    let itemId =
-      event.target.nextSibling.nextSibling.firstChild.nextSibling.value;
-    for (let i = 0; i < this.todos.length; i++) {
-      if (this.todos[i].id == itemId) {
-        this.todos[i].completed = this.todos[i].completed == false ? true : false;
-      }
-    }
-    let todosArrayString = JSON.stringify(this.todos);
-    localStorage.setItem("todos", todosArrayString);
-    this.showToDos(all, active, completed);
-    this.countLeftTasks();
-  }
-
-  deleteItem(event, all, active, completed) {
-    let deleteItemId = event.target.previousSibling.previousSibling.value;
-    for (let i = 0; i < this.todos.length; i++) {
-      if (this.todos[i].id == deleteItemId) {
-        this.todos.splice(i, 1);
-        let todosArrayString = JSON.stringify(this.todos);
-        localStorage.setItem("todos", todosArrayString);
-        this.showToDos(all, active, completed);
-        this.countLeftTasks();
-      }
-    }
   }
 }
 
