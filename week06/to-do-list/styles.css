@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 auto;
+    max-width: 275px;
+    text-align: center;
+}
+
+.todo-body {
+    border: 2px solid black;
+    padding: 30px;
+    padding-top: 0px;
+    margin-top: 40px;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.checked {
+    text-decoration: line-through;
+}
+
+.displayed {
+    display: none;
+}
+
+.active {
+    border: 1px solid black;
+}
+
+#toDoList li {
+    display: block;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: -30px;
+    width: 100%;
+}
+
+.fa-check-square-o {
+    float: left;
+    display: none;
+}
+
+.toDoItem {
+    margin-right: 20px;
+}
+
+.fa-trash-can {
+    float: right;
+    margin-top: -17px;
+    padding-left: 30px;
+}
+
+#statistics {
+    margin: 0 auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+#input {
+    width: 75%;
+    height: 25px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: -20px;
+}
+
+#add-task {
+    font-size: 20px;
+    background-color: aqua;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: right;
+    margin-right: -15px;
+    border-radius: 5px;
+}
+
+/* body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 auto;
+    max-width: 275px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#toDoList {
+    padding: 0;
+}
+
+#toDoList li {
+    cursor: pointer;
+    position: relative;
+    list-style-type: none;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.checkbox {
+    width: 20px;
+    float: inline-start;
+}
+
+.delete {
+    float: right;
+}
+
+input {
+    margin: 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 70%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#add-task {
+    padding: 10px;
+    width: 45px;
+    background: aqua;
+    color: #555;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+} */
