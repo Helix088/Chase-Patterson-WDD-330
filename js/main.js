@@ -23,6 +23,10 @@ const links = [
     label: "Week 06",
     url: "/week06/to-do-list/index.html",
   },
+  {
+    label: "Week 07",
+    url: "/week07/index.html",
+  },
 ];
 
 let orderedList = document.getElementById("tobLinks");
