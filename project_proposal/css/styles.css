@@ -1,0 +1,43 @@
+/* Zen Tokyo Zoo headers */
+/* Gill Sans body */
+.animal-img {
+    width: 25%;
+}
+
+#animals {
+    list-style-type: none;
+}
+
+#animals li {
+    margin-bottom: 20px;
+}
+
+.head-foot-color {
+    background-color: #002400;
+    width: 100px;
+    height: 20px;
+}
+
+.main-color {
+    background-color: #DCE0D9;
+    width: 100px;
+        height: 20px;
+}
+
+.nav-color {
+    background-color: #7B904B;
+    width: 100px;
+        height: 20px;
+}
+
+.dets-color {
+    background-color: #58641D;
+    width: 100px;
+        height: 20px;
+}
+
+.form-color {
+    background-color: #273B09;
+    width: 100px;
+        height: 20px;
+}

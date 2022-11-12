@@ -37,6 +37,14 @@ const links = [
   },
 ];
 
+const linksTwo = [
+  {
+    label: "Project Proposal",
+    url: "/project_proposal/index.html",
+  },
+];
+
+
 let orderedList = document.getElementById("tobLinks");
 
 links.forEach(item => {
@@ -46,4 +54,15 @@ links.forEach(item => {
     a.textContent = item.label;
     a.href = item.url;
     li.appendChild(a);
+});
+
+let orderedListTwo = document.getElementById("tobLinksTwo");
+
+linksTwo.forEach((item) => {
+  let li = document.createElement("li");
+  orderedListTwo.appendChild(li);
+  let a = document.createElement("a");
+  a.textContent = item.label;
+  a.href = item.url;
+  li.appendChild(a);
 });
