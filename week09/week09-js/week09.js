@@ -31,6 +31,8 @@ function shuffle(array) {
 
 const view = {
   score: document.querySelector("#score strong"),
+  timer: document.querySelector("#timer strong"),
+  hiScore: document.querySelector("#hiScore strong"),
   question: document.getElementById("question"),
   result: document.getElementById("result"),
   info: document.getElementById("info"),
@@ -56,11 +58,13 @@ const view = {
     this.render(this.score, game.score);
     this.render(this.result, "");
     this.render(this.info, "");
+    this.render(this.hiScore, game.hiScore());
   },
   teardown() {
     this.hide(this.question);
     this.hide(this.response);
     this.show(this.start);
+    this.render(this.hiScore, game.hiScore());
   },
   buttons(array) {
     return array.map((value) => `<button>${value}</button>`).join("");
@@ -71,9 +75,26 @@ const game = {
   start(quiz) {
     console.log("start() invoked");
     this.score = 0;
+    this.secondsRemaining = 20;
+    this.timer = setInterval(this.countdown, 1000);
     this.questions = [...quiz];
     view.setup();
     this.ask();
+  },
+  countdown() {
+    game.secondsRemaining--;
+    view.render(view.timer, game.secondsRemaining);
+    if (game.secondsRemaining <= 0) {
+      game.gameOver();
+    }
+  },
+  hiScore(){
+    const hi = localStorage.getItem('highScore') || 0;
+    if(this.score > hi || hi === 0) {
+      localStorage.setItem('highScore', this.score);
+      view.render(view.info,'** NEW HIGH SCORE! **');
+    }
+    return localStorage.getItem('highScore');
   },
   ask(name) {
     console.log("ask() invoked");
@@ -115,8 +136,6 @@ const game = {
       `Game Over, you scored ${this.score} point${this.score !== 1 ? "s" : ""}`
     );
     view.teardown();
+    clearInterval(this.timer);
   },
 };
-
-// view.response.addEventListener("click", (event) => game.check(event), false);
-// view.start.addEventListener("click", () => game.start(quiz), false);
