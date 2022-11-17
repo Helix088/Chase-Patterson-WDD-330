@@ -42,6 +42,10 @@ const linksTwo = [
     label: "Project Proposal",
     url: "/project_proposal/index.html",
   },
+  {
+    label: "Week 10",
+    url: "/week10/index.html",
+  },
 ];
 
 
