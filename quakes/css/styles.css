@@ -1,0 +1,43 @@
+* {
+    margin-top: 0;
+}
+
+body {
+    text-align: center;
+    background-color: burlywood;
+    margin-top: 0;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem;
+    background-color: chocolate;
+    color: white;
+    padding: 2rem;
+    width: 100%;
+    margin-left: -10px;
+    padding-left: 0;
+}
+
+#quakeList {
+    margin: auto;
+    list-style-type: none;
+    width: 50%;
+}
+
+li {
+    padding: 1.5rem;
+    background-color: white;
+    margin-bottom: 1rem;
+}
+
+li a {
+    text-decoration: none;
+    color: #900;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+li a div {
+    font-size: 1rem;
+}
