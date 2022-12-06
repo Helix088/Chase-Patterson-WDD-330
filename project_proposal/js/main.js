@@ -1,4 +1,4 @@
-const animalList = document.getElementById("animals");
+const pokemonList = document.getElementById("pokemon");
 
 async function apiFetch(url) {
     return fetch(url)
@@ -8,31 +8,29 @@ async function apiFetch(url) {
         });
 }
 
-function getAnimals(url) {
+function getPokemon(url) {
     return apiFetch(url);
 }
 
-function getAnimalDetails(url) {
+function getPokemonDetails(url) {
     apiFetch(url);
 }
 
-function createAnimalList(data) {
-    animalList.innerHTML = "";
-    data.forEach((animal) => {
-        const animalLi = document.createElement("li");
-        animalLi.setAttribute("id", `&{animal.name}`);
-        animalLi.innerHTML = `<a href="#"><img src="${animal.image_link}" class="animal-img">${animal.name}</img></a>`;
-        getAnimalDetails(animal.url);
-        animalList.append(animalLi);
+function createPokemonList(data) {
+    pokemonList.innerHTML = "";
+    data.results.forEach((pokemon) => {
+        const pokemonLi = document.createElement("li");
+        pokemonLi.setAttribute("id", `&{pokemon.name}`);
+        pokemonLi.innerHTML = `<a href="#"><img src="${pokemon.sprites}" class="animal-img">${pokemon.name}</img></a>`;
+        getPokemonDetails(pokemon.url);
+        pokemonList.append(pokemonLi);
     });
 }
 
-function renderList(
-  url = "https://zoo-animal-api.herokuapp.com/animals/rand/6"
-) {
-  getAnimals(url).then(function (data) {
+function renderList(url = "https://pokeapi.co/api/v2/pokemon") {
+  getPokemon(url).then(function (data) {
     console.log(data);
-    createAnimalList(data);
+    createPokemonList(data);
     if (data.next) {
       const next = document.getElementById("next");
       next.onclick = () => {
