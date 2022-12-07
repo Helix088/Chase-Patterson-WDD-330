@@ -21,13 +21,13 @@ function createPokemonList(data) {
     data.results.forEach((pokemon) => {
         const pokemonLi = document.createElement("li");
         pokemonLi.setAttribute("id", `&{pokemon.name}`);
-        pokemonLi.innerHTML = `<a href="#"><img src="${pokemon.sprites}" class="animal-img">${pokemon.name}</img></a>`;
+        pokemonLi.innerHTML = `<a href="${pokemon.url}" class="poke-link"><img src="${pokemon.sprites}" class="pokemon-img">${pokemon.name}</img></a>`;
         getPokemonDetails(pokemon.url);
         pokemonList.append(pokemonLi);
     });
 }
 
-function renderList(url = "https://pokeapi.co/api/v2/pokemon") {
+function renderList(url = "https://pokeapi.co/api/v2/pokemon/") {
   getPokemon(url).then(function (data) {
     console.log(data);
     createPokemonList(data);
@@ -43,6 +43,9 @@ function renderList(url = "https://pokeapi.co/api/v2/pokemon") {
         renderList(data.previous);
       };
     }
+    // if (data.url) {
+    //   renderPokemon();
+    // }
   });
 }
 
