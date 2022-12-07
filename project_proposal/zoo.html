@@ -10,11 +10,21 @@
 </head>
 <body class="zoo-body">
     <h1 class="zoo-header">Pokemon Zoo</h1>
-    <ul id="pokemon"></ul>
-    <div class="buttons">
-        <button id="previous">Previous</button>
-        <button id="next">Next</but>
-    </div>
+    <main>
+        <div class="listbox">
+            <table id="pokemonlist">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Sprite</th>
+                        <th>Type(s)</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <a id="prev" href="#">Prev</a> <a id="next" href="#">Next</a>
+        </div>
+    </main>
+    <script src="./js/main.js"></script>
 </body>
-<script src="./js/main.js"></script>
 </html>
