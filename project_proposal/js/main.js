@@ -1,111 +1,154 @@
-// const pokemonList = document.getElementById("pokemon");
-async function apiFetch(url) {
- return fetch(url)
-   .then(function (response) {
-     if (!response.ok) {
-       throw Error(response.statusText);
-     } else {
-       return response.json();
-     }
-   })
-   .catch(function (error) {
-     console.log(error);
-   });
-}
+const pokemonList = document.getElementById("pokemonlist");
+const cachedPokemon = {};
 
-function getPokemon(url) {
-    return apiFetch(url);
-}
+const apiFetch = async () => {
+  const url = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=21`;
+  const results = await fetch(url);
+  const data = await results.json();
+  console.log(data);
+  if (data.next) {
+    const next = document.getElementById("next");
+    next.onclick = () => {
+      showPokemon(data.next);
+    };
+  }
+  if (data.previous) {
+    const prev = document.getElementById("prev");
+    prev.onclick = () => {
+      showPokemon(data.previous);
+    };
+  }
+  const pokemon = data.results.map((data, index) => ({
+    name: data.name,
+    id: index + 1,
+    image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${
+      index + 1
+    }.png`,
+  }));
+  showPokemon(pokemon);
+};
 
-function renderPokemonList(pokemons, pokemonListElement) {
-  // pokemonList.innerHTML = "";
-  //     data.results.forEach((pokemon) => {
-  //         const pokemonLi = document.createElement("li");
-  //         pokemonLi.setAttribute("id", `&{pokemon.name}`);
-  //         pokemonLi.innerHTML = `<a href="${pokemon.url}" class="poke-link"><img src="${pokemon.sprites}" class="pokemon-img">${pokemon.name}</img></a>`;
-  //         getPokemonDetails(pokemon.url);
-  //         pokemonList.append(pokemonLi);
-  //     });
-  const pokeList = pokemonListElement.children[1];
-  pokeList.innerHTML = "";
-  pokemons.forEach(function (pokemon) {
-    let listItem = document.createElement("tr");
-    listItem.innerHTML = `
-      <td><a href="${pokemon.url}" class="poke-link">${pokemon.name}</a></td>
-      <td>${pokemon.url.sprites}</td>
-      <td>${pokemon.url.types}</td>
+const showPokemon = (pokemon) => {
+  const pokemonHTMLString = pokemon
+    .map(
+      (pokeman) =>
+        `
+    <li class="card" onclick="selectPokemon(${pokeman.id})">
+        <img class="card-image" src="${pokeman.image}"/>
+        <div class="circle"></div>
+        <div class="circletwo"></div>
+        <div class="circlethree"></div>
+        <div class="line"></div>
+        <h2 class="card-title">${pokeman.id}. ${pokeman.name}</h2>
+        </a>
+    </li>
+        `
+    )
+    .join("");
+  pokemonList.innerHTML = pokemonHTMLString;
+};
+
+const selectPokemon = async (id) => {
+  if (!cachedPokemon[id]) {
+    const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+    const res = await fetch(url);
+    const pokeman = await res.json();
+    cachedPokemon[id] = pokeman;
+    displayPokemanPopup(pokeman);
+  } else {
+    displayPokemanPopup(cachedPokemon[id]);
+  }
+};
+
+const displayPokemanPopup = (pokeman) => {
+  const type = pokeman.types.map((type) => type.type.name).join(", ");
+  const htmlString = `
+        <div class="popup">
+            <button id="closeBtn" onclick="closePopup()">Close</button>
+            <div class="card">
+                <img class="card-image" src="${pokeman.sprites["front_default"]}"/>
+                <h2 class="card-title">${pokeman.name}</h2>
+                <p>Type: <small class="type">${type}</small> | Height: ${pokeman.height} | Weight: ${pokeman.weight}</p>
+            </div>
+        </div>
     `;
-    listItem.addEventListener("click", function (event) {
-      event.preventDefault();
-      getPokemonDetails(pokemon.url);
-    });
-    pokeList.appendChild(listItem);
-  });
-}
+  pokemonList.innerHTML = htmlString + pokemonList.innerHTML;
+};
 
-function renderPokemonDetails(pokeData) {
-  console.log(pokeData);
-}
+const closePopup = () => {
+  const popup = document.querySelector(".popup");
+  popup.parentElement.removeChild(popup);
+};
 
-function showPokemon(url = "https://pokeapi.co/api/v2/pokemon/") {
-  getPokemon(url).then(function (data) {
-    const results = data.results;
-    console.log(results);
-    const pokemonListElement = document.getElementById("pokemonlist");
-    renderPokemonList(results, pokemonListElement);
-    if (results.next) {
-      const next = document.getElementById("next");
-      next.onclick = () => {
-        showPokemon(data.next);
-      };
-    }
-    if (results.previous) {
-      const prev = document.getElementById("prev");
-      prev.onclick = () => {
-        showPokemon(data.previous);
-      };
-    }
-  });
-}
+apiFetch();
 
-function getPokemonDetails(url) {
-  // apiFetch(url);
-  getPokemon(url).then(function (data) {
-    renderPokemonDetails(data);
-  });
-}
-
-showPokemon();
-
-//  getPokemon(url).then(function (data) {
-//    console.log(data);
-//    createPokemonList(data);
-//    if (data.next) {
-//      const next = document.getElementById("next");
-//      next.onclick = () => {
-//        renderList(data.next);
-//      };
-//    }
-//    if (data.previous) {
-//      const prev = document.getElementById("previous");
-//      prev.onclick = () => {
-//        renderList(data.previous);
-//      };
-//    }
-//    // if (data.url) {
-//    //   renderPokemon();
-//    // }
-//  });
-
-// function createPokemonList(data) {
-//     pokemonList.innerHTML = "";
-//     data.results.forEach((pokemon) => {
-//         const pokemonLi = document.createElement("li");
-//         pokemonLi.setAttribute("id", `&{pokemon.name}`);
-//         pokemonLi.innerHTML = `<a href="${pokemon.url}" class="poke-link"><img src="${pokemon.sprites}" class="pokemon-img">${pokemon.name}</img></a>`;
-//         getPokemonDetails(pokemon.url);
-//         pokemonList.append(pokemonLi);
-//     });
+// async function apiFetch(url) {
+//  return fetch(url)
+//    .then(function (response) {
+//      if (!response.ok) {
+//        throw Error(response.statusText);
+//      } else {
+//        return response.json();
+//      }
+//    })
+//    .catch(function (error) {
+//      console.log(error);
+//    });
 // }
 
-// renderList();
+// function getPokemon(url) {
+//     return apiFetch();
+// }
+
+// function renderPokemonList(pokemons, pokemonListElement) {
+//   const pokeList = pokemonListElement;
+//   pokeList.innerHTML = "";
+//   pokemons.forEach(function (pokemon) {
+//     let listItem = document.createElement("li");
+//     listItem.innerHTML = `
+//     <img src="${pokemon.url} + /${pokemon.name} + /${pokemon.image}"></img>
+//     <a href="${pokemon.url}" class="poke-link">${pokemon.name}</a>
+//     `;
+//     listItem.addEventListener("click", function (event) {
+//       event.preventDefault();
+//       getPokemonDetails(pokemon.url);
+//     });
+//     pokeList.appendChild(listItem);
+//   });
+// }
+
+// function renderPokemonDetails(pokeData) {
+//   console.log(pokeData);
+// }
+
+// function showPokemon(
+// url = "https://pokeapi.co/api/v2/pokemon/"
+// ) {
+// getPokemon(url).then(function (data) {
+//   console.log(data);
+//   const results = data.results;
+//   const pokemonListElement = document.getElementById("pokemonlist");
+//   renderPokemonList(pokemon, pokemonListElement);
+//   if (data.next) {
+//     const next = document.getElementById("next");
+//     next.onclick = () => {
+//       showPokemon(data.next);
+//     };
+//   }
+//   if (data.previous) {
+//     const prev = document.getElementById("prev");
+//     prev.onclick = () => {
+//       showPokemon(data.previous);
+//     };
+//   }
+// });
+// }
+
+// function getPokemonDetails(url) {
+//   // apiFetch(url);
+//   getPokemon(url).then(function (data) {
+//     renderPokemonDetails(data);
+//   });
+// }
+
+// showPokemon();
