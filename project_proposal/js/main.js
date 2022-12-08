@@ -47,9 +47,7 @@ function renderPokemonDetails(pokeData) {
   console.log(pokeData);
 }
 
-function showPokemon(
-  url = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=22"
-) {
+function showPokemon(url = "https://pokeapi.co/api/v2/pokemon/") {
   getPokemon(url).then(function (data) {
     const results = data.results;
     console.log(results);
@@ -62,7 +60,7 @@ function showPokemon(
       };
     }
     if (results.previous) {
-      const prev = document.getElementById("previous");
+      const prev = document.getElementById("prev");
       prev.onclick = () => {
         showPokemon(data.previous);
       };
