@@ -47,12 +47,59 @@ nav a:hover {
     background-color: crimson;
 }
 
+.slide-container {
+    max-width: 800px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section {
+    width: 100%;
+}
+
+.myslides {
+    width: 100%;
+}
+
+.slideleft,
+.slideright,
+.slidebadge {
+    cursor: pointer
+}
+
+.slidebadge {
+    height: 13px;
+    width: 13px;
+    padding: 0
+}
+
+.hovertext {
+    color: white;
+}
+
+.hovertext:hover {
+    color: khaki;
+}
+
+.dots {
+    border: 1px solid white;
+    border-radius: 50%;
+}
+
+.dots:hover {
+    color: white;
+}
+
 #pokemonlist {
     display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
     padding: 0;
     align-items: center;
+    list-style: none;
 }
 
 .card {
@@ -164,7 +211,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 5;
 }
 
 .popup .card {
