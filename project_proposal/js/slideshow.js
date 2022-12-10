@@ -1,26 +1,30 @@
 let slideIndex = 1;
-showDivs(slideIndex);
+showSlides(slideIndex);
 
-function plusDivs(n) {
-    showDivs(slideIndex += n);
+function plusSlides(n) {
+  showSlides((slideIndex += n));
 }
 
-function currentDiv(n) {
-    showDivs(slideIndex = n);
+function currentSlide(n) {
+  showSlides((slideIndex = n));
 }
 
-function showDivs(n) {
-    let i;
-    let x = document.getElementsByClassName("myslides");
-    let dots = document.getElementsByClassName("dots");
-    if (n > x.length) {slideIndex = 1};
-    if (n < 1) {slideIndex = x.length};
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    } 
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace("hoverwhite", "");
-    }
-    x[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += "hoverwhite";
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].className += " active";
 }

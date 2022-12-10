@@ -19,7 +19,7 @@ body {
     width: 100%;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    margin-top: -1rem;
+    margin-top: -0.1rem;
 }
 
 nav {
@@ -47,34 +47,135 @@ nav a:hover {
     background-color: crimson;
 }
 
-.slide-container {
-    max-width: 800px;
+/***************Slide Show******************/
+
+picture {
+    display: inline;
+    text-align: center;
 }
 
-.center {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.section {
+picture img {
     width: 100%;
+    height: auto;
+    border: 1px solid #bbb;
 }
 
-.myslides {
+.mySlides {
+    display: none;
+}
+
+.herodiv img {
+    vertical-align: middle;
+}
+
+
+/* Slideshow container */
+
+.slideshow-container {
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+    margin-top: 3rem;
+}
+
+
+/* Next & previous buttons */
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+
+/* Position the "next button" to the right */
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+
+/* On hover, add a black background color with a little bit see-through */
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/* Caption text */
+
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
     width: 100%;
+    text-align: center;
 }
 
-.slideleft,
-.slideright,
-.slidebadge {
-    cursor: pointer
+
+/* The dots/bullets/indicators */
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
 }
 
-.slidebadge {
-    height: 13px;
-    width: 13px;
-    padding: 0
+.active,
+.dot:hover {
+    background-color: #717171;
 }
+
+
+/* Fading animation */
+
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/***************Slide Show******************/
 
 .hovertext {
     color: white;
@@ -200,47 +301,6 @@ h1 {
     font-size: 54px;
 }
 
-/* .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    background: #f4f4f4;
-    opacity: 0.95;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 5;
-}
-
-.popup .card {
-    background: linear-gradient(to top,
-                #f4f4f4 0%,
-                #f4f4f4 50%,
-                crimson 50%,
-                crimson 100%);
-    border: 1px solid black;
-    width: 280px;
-}
-
-.popup .card-image {
-    width: 150px;
-    height: auto;
-} */
-
-#closeBtn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: orangered;
-    padding: 10px 20px;
-    border: none;
-    color: white;
-    border-radius: 3px;
-    transition: transform 100ms;
-}
-
 button:hover {
     cursor: pointer;
     transform: translateY(-1px);
@@ -271,10 +331,72 @@ button:hover {
 }
 
 footer {
+    position: absolute;
     text-align: center;
     bottom: 0;
     width: 100%;
     height: 2.5rem;
+}
+
+.zoo-footer {
+    position: relative;
+}
+
+.donate-head {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form {
+    border: 2px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.form label {
+    margin-left: 1rem;
+}
+
+.form input {
+    max-width: 50%;
+    margin-left: 5.1rem;
+    height: 2.2rem;
+    font-size: 1rem;
+}
+
+.form textarea {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.donate-button {
+    margin-left: auto;
+    margin-right: auto;
+    list-style: none;
+    background: linear-gradient(to top,
+            #f4f4f4 0%,
+            #f4f4f4 50%,
+            crimson 50%,
+            crimson 100%);
+    padding: 3rem;
+    border-radius: 50%;
+    color: #222;
+    color: #f4f4f4;
+    font-size: 1.3rem;
+    font-weight: 900;
+    -webkit-text-stroke: 2px black;
+    -webkit-text-fill-color: white;
+    letter-spacing: 0.1rem;
+    line-height: 0rem;
+    width: 8%;
 }
 
 @media screen and (min-width: 48rem) {
