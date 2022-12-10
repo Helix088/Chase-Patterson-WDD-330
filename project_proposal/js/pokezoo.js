@@ -14,7 +14,6 @@ async function apiFetch(url) {
 
 async function getPokemon(url, offset) {
   const data = await apiFetch(url);
-  console.log(data);
   const next = document.getElementById("next");
   next.onclick = () => {
     if (offset > data.count) {
@@ -52,7 +51,6 @@ async function renderPokemonList(url) {
         return previous;
       }, {});
   const pokeList = await getPokemon(url, offset.offset);
-  console.log(pokeList);
   pokemonList.innerHTML = "";
   pokeList.forEach(function (pokeman) {
     let listItem = document.createElement("li");
