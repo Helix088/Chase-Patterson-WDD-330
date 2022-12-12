@@ -504,7 +504,7 @@ button:hover {
 @keyframes move-up {
     0% {
     top: 0;
-    opacity: 1;
+    opacity: 0;
   }
   40% {
     top: -90px;
@@ -527,7 +527,7 @@ button:hover {
     0% {
     top: 0;
     left: 0;
-    opacity: 1;
+    opacity: 0;
     transform: rotate(0);
   }
   40% {
@@ -553,24 +553,25 @@ button:hover {
 @keyframes move-out-right {
    0% {
     top: 0;
-    opacity: 1;
+    left: 0;
+    opacity: 0;
     transform: rotate(0);
   }
   40% {
     top: -70px;
-    left: calc(70% + 30px);
+    left: 30px;
     opacity: 1;
     transform: scale(1);
   }
   80% {
     top: -50px;
-    left: calc(70% + 50px);
+    left: 50px;
     opacity: 1;
     transform: rotate(45deg) scale(1.2);
   }
   100% {
     top: -50px;
-    left: calc(70% + 50px);
+    left: 100;
     opacity: 0;
     transform: rotate(60deg) scale(1);
   }
