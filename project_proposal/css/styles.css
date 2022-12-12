@@ -459,6 +459,7 @@ button:hover {
 }
 
 .fa-star {
+    visibility: hidden;
     position: relative;
     color: yellow;
     z-index: 3;
@@ -466,15 +467,15 @@ button:hover {
 }
 
 .star1 {
-    animation: move-out-left 0.25s linear 3.8s forwards;
+    animation: move-out-left 0.4s linear 4s forwards;
 }
 
 .star2 {
-    animation: move-up 0.25s linear 3.8s forwards;
+    animation: move-up 0.4s linear 4s forwards;
 }
 
 .star3 {
-    animation: move-out-right 0.25s linear 3.8s forwards;
+    animation: move-out-right 0.4s linear 4s forwards;
 }
 
 @keyframes blink {
@@ -503,21 +504,22 @@ button:hover {
 
 @keyframes move-up {
     0% {
-    top: 0;
+        visibility: visible;
+    top: -120px;
     opacity: 0;
   }
   40% {
-    top: -90px;
+    top: -160px;
     opacity: 1;
     transform: scale(1);
   }
   80% {
-    top: -70px;
+    top: -120px;
     opacity: 1;
     transform: scale(1.2);
   }
   100% {
-    top: -70px;
+    top: -120px;
     opacity: 0;
     transform: scale(1);
   }
@@ -525,25 +527,26 @@ button:hover {
 
 @keyframes move-out-left {
     0% {
-    top: 0;
+        visibility: visible;
+    top: -120px;
     left: 0;
     opacity: 0;
     transform: rotate(0);
   }
   40% {
-    top: -70px;
+    top: -140px;
     left: -30px;
     opacity: 1;
     transform: scale(1);
   }
   80% {
-    top: -50px;
+    top: -100px;
     left: -50px;
     opacity: 1;
     transform: rotate(-45deg)scale(1.2);
   }
   100% {
-    top: -50px;
+    top: -100px;
     left: -50px;
     opacity: 0;
     transform: rotate(-60deg) scale(1);
@@ -552,26 +555,27 @@ button:hover {
 
 @keyframes move-out-right {
    0% {
-    top: 0;
+    visibility: visible;
+    top: -120px;
     left: 0;
     opacity: 0;
     transform: rotate(0);
   }
   40% {
-    top: -70px;
+    top: -140px;
     left: 30px;
     opacity: 1;
     transform: scale(1);
   }
   80% {
-    top: -50px;
+    top: -100px;
     left: 50px;
     opacity: 1;
     transform: rotate(45deg) scale(1.2);
   }
   100% {
-    top: -50px;
-    left: 100;
+    top: -100px;
+    left: 50px;
     opacity: 0;
     transform: rotate(60deg) scale(1);
   }
