@@ -74,7 +74,7 @@ footer {
     margin-top: 3rem;
 }
 
-/***************Slide Show******************/
+/***************Home Page******************/
 
 picture {
     display: inline;
@@ -180,7 +180,32 @@ picture img {
     }
 }
 
-/***************Slide Show******************/
+.home-body {
+    text-align: center;
+}
+
+.home-content {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+figure, .sponsers, .surveillance {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8rem;
+}
+
+figure {
+    padding: 2rem;
+}
+
+.sponsers, .surveillance {
+    border: 2px solid black;
+    width: 90%;
+    height: 475px;
+}
+
+/***************Home Page******************/
 
 /***************PokeZoo******************/
 
@@ -396,7 +421,6 @@ button:hover {
     border-radius: 5px;
 }
 
-/* Poké Styles */
 .pokeball {
     margin-left: auto;
     margin-right: auto;
@@ -581,6 +605,8 @@ button:hover {
   }
 }
 
+/***************Thank You Page******************/
+
 /***************Media Queries******************/
 
 @media screen and (min-width: 48rem) {
@@ -590,12 +616,15 @@ button:hover {
     }
     #pokemonlist {
             grid-template-columns: 1fr 1fr;
-        }
+    }
 }
 
 @media screen and (min-width: 70rem) {
     #pokemonlist {
         grid-template-columns: 1fr 1fr 1fr;
+    }
+    .home-content {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
