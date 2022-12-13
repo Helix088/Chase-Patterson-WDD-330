@@ -74,6 +74,11 @@ footer {
     margin-top: 3rem;
 }
 
+.donate-footer {
+    position: absolute;
+    bottom: 0;
+}
+
 /***************Home Page******************/
 
 picture {
@@ -82,7 +87,7 @@ picture {
 }
 
 picture img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     border: 1px solid #bbb;
 }
@@ -116,6 +121,11 @@ picture img {
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
+}
+
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
 }
 
 .next {
@@ -197,12 +207,30 @@ figure, .sponsers, .surveillance {
 
 figure {
     padding: 2rem;
+    width: 60%;
 }
 
 .sponsers, .surveillance {
     border: 2px solid black;
-    width: 90%;
+    width: 60%;
     height: 475px;
+}
+
+#sponser-links {
+    list-style: none;
+    padding: 0;
+    line-height: 2rem;
+}
+
+#sponser-links li {
+    font-size: 1.2rem;
+    color: black;
+    text-decoration: none;
+}
+
+#sponser-links li:hover, :visited, :active, :focus{ 
+    color: black;
+    text-decoration: none;
 }
 
 /***************Home Page******************/
@@ -459,7 +487,7 @@ button:hover {
 .pokeball__button {
     position: absolute;
     top: calc(50% - 14px);
-    left: calc(50% - 14px);
+    left: calc(50% - 13px);
     width: 25px;
     height: 25px;
     background-color: white;
@@ -471,8 +499,8 @@ button:hover {
 
 .pokeball_circle {
     position: absolute;
-    top: calc(50% - 13px);
-    left: calc(50% - 13px);
+    top: 0;
+    left: 0;
     width: 21px;
     height: 21px;
     background-color: white;
@@ -626,6 +654,14 @@ button:hover {
     .home-content {
         grid-template-columns: 1fr 1fr;
     }
+        figure {
+            width: 90%;
+        }
+    
+        .sponsers,
+        .surveillance {
+            width: 90%;
+        }
 }
 
 /***************Media Queries******************/

@@ -62,7 +62,6 @@ async function renderPokemonList(url) {
         <div class="circlethree"></div>
         <div class="line"></div>
         <h2 class="card-title">${pokeman.id}. ${pokeman.name}</h2>
-        </a>
     </li>
     `;
     pokemonList.appendChild(listItem);
