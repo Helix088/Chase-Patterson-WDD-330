@@ -9,18 +9,16 @@ function jsonFetch(data) {
 
 
 function displayLinks(data) {
-    const links = document.getElementById("sponser-links");
+    const links = document.getElementById("sponsor-links");
     links.innerHTML = "";
     data.links.forEach((link) => {
       let listItem = document.createElement("li");
       listItem.innerHTML = `
-        <li>
-            <a href="${link.link}" class="spons-link">${link.organization}</a>
-        </li>
+        <a href="${link.link}" class="spons-link"><img src="${link.logo}" class="spons-logo"></img></a>
     `;
       links.appendChild(listItem);
     });
 }
 
-jsonFetch("../animal-links.json");
+jsonFetch("../spons-links.json");
 

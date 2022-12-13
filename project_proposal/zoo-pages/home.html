@@ -56,8 +56,9 @@
       <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
       <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
-    <h2>Welcome to the Virtual PokéZoo!</h2>
+    <h2 class="home-head">Welcome to the Virtual PokéZoo!</h2>
     <div class="home-content">
+      <div class="figures">
       <figure>
         <img src="../images/charizard.png" alt="Placeholder Charizard">
         <figcaption>Here at the PokéZoo we thrill in the adventure of discovering new species of Pokémon every day. We have over 1000 spieces of Pokémon roaming the zoo at all times. Feel free to explore the wonderful world of Pokémon and get ready for the thrill of a lifetime!</figcaption>
@@ -66,13 +67,19 @@
         <img src="../images/charizard.png" alt="Placeholder Charizard">
         <figcaption>Since this is a virtual Pokémon zoo, you will not be able to pet or see the actual Pokémon. However, you will be able to learn more about each species of Pokémon as you explore the "Zoo" page of this website. If you have any questions, feel free to leave them in the comments section of the individual Pokémon's page.</figcaption>
       </figure>
-      <div class="sponsers">
-        <ul id="sponser-links"></ul>
       </div>
-      <div class="surveillance"></div>
+      <div class="surveillance">
+        <h3 id="surv-head">Watch animals live!</h3>
+        <ul id="surveillance-links"></ul>
+      </div>
+      <div class="sponsors">
+        <h3 id="spons-head">Thank you to our Sponsors!</h3>
+        <ul id="sponsor-links"></ul>
+      </div>
     </div>
   </body>
   <footer>&#169; Virtual PokéZoo Chase Patterson</footer>
   <script src="../js/slideshow.js"></script>
-  <script src="../js/display-links.js"></script>
+  <script src="../js/display-spons-links.js"></script>
+  <script src="../js/display-surv-links.js"></script>
 </html>
