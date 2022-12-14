@@ -5,6 +5,7 @@ async function apiFetch(url) {
       throw Error(response.statusText);
     } else {
       const data = await response.json();
+      console.log(data)
       return data;
     }
   } catch (error) {
@@ -66,6 +67,10 @@ async function renderPokemonList(url) {
     `;
     pokemonList.appendChild(listItem);
   });
+}
+
+async function renderOnePokemon(url) {
+  
 }
 
 renderPokemonList("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=21");

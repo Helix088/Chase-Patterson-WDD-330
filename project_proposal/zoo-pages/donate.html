@@ -30,23 +30,9 @@
     </div>
     <ul class="donation-links"></ul>
     <div class="form-container">
-      <!-- <form action="./thank-you.html" class="form">
-        <label for="fname">First Name:</label><br />
-        <input type="text" name="fname" id="fname" /><br />
-        <label for="lname">Last Name:</label><br />
-        <input type="text" name="lname" id="lname" /><br />
-        <label for="cardNum">Card Number:</label><br />
-        <input type="number" name="cardNum" id="cardNum" /><br />
-        <label for="billAdd">Billing Address:</label><br />
-        <input type="text" name="billAdd" id="billAdd" /><br />
-        <label for="desOrg">Desired Organization Donation</label><br />
-        <input type="text" name="desOrg" id="desOrg" /><br />
-        <label for="comments">Comments:</label><br />
-        <textarea name="comments" id="comments" cols="50" rows="9"></textarea
-        ><br />
-        <button type="submit" class="donate-button">Submit</button>
-      </form> -->
       <form action="./thank-you.html" class="form">
+        <div class="form-container-two">
+        <div class="billing">
             <h3>Billing Address</h3>
             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
             <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
@@ -60,7 +46,8 @@
             <input type="text" id="state" name="state" placeholder="State">
             <label for="zip">Zip</label>
             <input type="text" id="zip" name="zip" placeholder="Zip Code">
-          <div class="col-50">
+          </div>
+          <div class="payment">
             <h3>Payment</h3>
             <label for="fname">Accepted Cards</label>
             <div class="icon-container">
@@ -81,6 +68,7 @@
         <label>
           <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
         </label>
+        </div>
         <button type="submit" class="donate-button">Submit</button>
       </form>
     </div>
