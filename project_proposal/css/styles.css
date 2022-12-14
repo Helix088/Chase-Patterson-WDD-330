@@ -413,6 +413,113 @@ button:hover {
 
 /***************PokeZoo******************/
 
+/***************About Page******************/
+
+.about-body {
+  text-align: center;
+}
+
+.about-img {
+  width: 100%;
+}
+
+.about-content,
+.creator-info {
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  width: 80%;
+}
+
+.about-content p {
+  padding-bottom: 1.2rem;
+}
+
+#pokedex-circle {
+  position: relative;
+  top: -10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(70, 135, 255);
+}
+
+.creator-info {
+  border: 2px solid black;
+  background-color: crimson;
+  border-radius: 8px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.creator-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.creator-desc {
+  grid-column: 1/3;
+  grid-row: 1/2;
+  margin-left: 16px;
+}
+
+.creator-desc p {
+  background-color: rgb(123, 176, 194);
+  border: 3px solid #717171;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.chase-img {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  width: 80px;
+  height: 80px;
+  border: 10px solid black;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#gamepad {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  background-color: #666;
+  border: 10px solid black;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#horizontal-line,
+#vertical-line {
+  background-color: #000;
+  width: 60px;
+  height: 15px;
+  border-radius: 5px;
+  margin: 0.5rem;
+}
+
+#horizontal-line {
+  position: relative;
+  top: 25px;
+  left: 3px;
+}
+
+#vertical-line {
+  position: relative;
+  transform: rotate(90deg);
+  top: 2px;
+  left: 3px;
+}
+
+/***************About Page******************/
+
 /***************Donate Page******************/
 .donate-head {
   text-align: center;
@@ -487,7 +594,7 @@ input[type="month"] {
   -webkit-text-fill-color: white;
   letter-spacing: 0.1rem;
   line-height: 0rem;
-  width: 50px;
+  width: 20px;
 }
 
 /***************Donate Page******************/
@@ -739,6 +846,38 @@ input[type="month"] {
   #surveillance-links {
     grid-template-columns: 1fr 1fr 1fr;
   }
+
+  .chase-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  #gamepad {
+    width: 120px;
+    height: 120px;
+  }
+
+  #horizontal-line,
+  #vertical-line {
+    background-color: #000;
+    width: 90px;
+    height: 20px;
+    border-radius: 5px;
+    margin: 0.5rem;
+  }
+
+  #horizontal-line {
+    position: relative;
+    top: 40px;
+    left: 8px;
+  }
+
+  #vertical-line {
+    position: relative;
+    transform: rotate(90deg);
+    top: 14px;
+    left: 8px;
+  }
 }
 
 @media screen and (max-width: 48rem) {
@@ -773,8 +912,8 @@ input[type="month"] {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   .form {
-  max-width: 60%;
-}
+    max-width: 60%;
+  }
 }
 
 @media screen and (min-width: 90rem) {
